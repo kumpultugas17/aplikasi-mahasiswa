@@ -2,9 +2,7 @@
 <?php $result = $koneksi->query("
    SELECT mahasiswa.nim, 
    mahasiswa.nama, mahasiswa.agama,
-   mahasiswa.jenis_kelamin, jurusan.nama_jurusan,
-   mahasiswa.asal_sekolah, mahasiswa.no_hp 
-   FROM mahasiswa INNER JOIN 
+   mahasiswa.jenis_kelamin, jurusan.nama_jurusan, mahasiswa.no_hp FROM mahasiswa INNER JOIN 
    jurusan ON mahasiswa.jurusan_id = jurusan.id");?>
 
 <div class="container">
@@ -16,6 +14,7 @@
                Data Mahasiswa
             </div>
             <div class="card-body">
+               <a href="tambah_mhs.php" class="btn btn-sm btn-primary mb-2">Tambah</a>
                <table class="table table-bordered table-hove table-sm">
                   <thead>
                      <tr class="text-center">
@@ -25,7 +24,6 @@
                         <th>Agama</th>
                         <th>Jenis Kelamin</th>
                         <th>Jurusan</th>
-                        <th>Asal Sekolah</th>
                         <th>No. Handphone</th>
                         <th>Aksi</th>
                      </tr>
@@ -37,16 +35,15 @@
                            <td class="text-center"><?= $no++; ?></td>
                            <td><?= $row['nim']; ?></td>
                            <td><?= $row['nama']; ?></td>
-                           <td><?= $row['agama']; ?></td>
-                           <td><?= $row['jenis_kelamin']; ?></td>
+                           <td class="text-center"><?= $row['agama']; ?></td>
+                           <td class="text-center"><?= $row['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan' ?></td>
                            <td><?= $row['nama_jurusan']; ?></td>
-                           <td><?= $row['asal_sekolah']; ?></td>
-                           <td><?= $row['no_hp']; ?></td>
+                           <td class="text-center"><?= $row['no_hp']; ?></td>
+                           <td class="text-center"><a href="" class="btn btn-sm btn-warning">Edit</a> <a href="" class="btn btn-sm btn-danger">Hapus</a></td>
                         </tr>
                      <?php endforeach; ?>
                   </tbody>
                </table>
-               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
          </div>
 
