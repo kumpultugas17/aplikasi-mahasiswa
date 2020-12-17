@@ -1,6 +1,7 @@
+<?php $page_title = 'Data Mahasiswa'; ?>
 <?php include '../layout/_layout_header.php'; ?>
 <?php $result = $koneksi->query("
-   SELECT mahasiswa.nim, 
+   SELECT mahasiswa.id, mahasiswa.nim, 
    mahasiswa.nama, mahasiswa.agama,
    mahasiswa.jenis_kelamin, jurusan.nama_jurusan, mahasiswa.no_hp FROM mahasiswa INNER JOIN 
    jurusan ON mahasiswa.jurusan_id = jurusan.id");?>
@@ -39,7 +40,10 @@
                            <td class="text-center"><?= $row['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan' ?></td>
                            <td><?= $row['nama_jurusan']; ?></td>
                            <td class="text-center"><?= $row['no_hp']; ?></td>
-                           <td class="text-center"><a href="" class="btn btn-sm btn-warning">Edit</a> <a href="" class="btn btn-sm btn-danger">Hapus</a></td>
+                           <td class="text-center">
+                              <a href="edit_mhs.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-warning">Edit</a> 
+                              <a href="hapus_mhs.php?id=<?= $row['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ?')";>Hapus</a>
+                           </td>
                         </tr>
                      <?php endforeach; ?>
                   </tbody>
